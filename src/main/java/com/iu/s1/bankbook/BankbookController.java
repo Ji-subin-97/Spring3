@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.util.DBConnector;
+
 @Controller  // 해당 클래스의 객체를 만들어 주세요.
 @RequestMapping("/bankbook/*")
 public class BankbookController {
@@ -16,6 +18,9 @@ public class BankbookController {
 	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)   // 파싱작업
 	public ModelAndView list(Integer [] num) {
+		DBConnector dbConnector = new DBConnector();
+		System.out.println(dbConnector.getConnect());
+		
 		for(Integer i : num) {
 			System.out.println(i);
 		}
