@@ -1,5 +1,7 @@
 package com.iu.s1.bankbook;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -16,19 +18,21 @@ import com.iu.s1.util.DBConnector;
 public class BankbookController {
 	//pojo (Plain Old Java Object)
 	
+	private BankbookService bankbookService;
+	
+	public BankbookController() {
+		bankbookService = new BankbookService();
+	}
+	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)   // 파싱작업
-	public ModelAndView list(Integer [] num) {
-		DBConnector dbConnector = new DBConnector();
-		System.out.println(dbConnector.getConnect());
+	public ModelAndView list(ModelAndView mv) {
 		
-		for(Integer i : num) {
-			System.out.println(i);
-		}
+		ArrayList<BankBookDTO> ar = bankbookService.getList();
 		System.out.println("bankbook리스트 입니다.");
 		
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
+		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
-		
 		return mv;
 	}
 	
