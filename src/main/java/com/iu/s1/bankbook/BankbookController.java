@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,8 @@ import com.iu.s1.util.DBConnector;
 public class BankbookController {
 	//pojo (Plain Old Java Object)
 	
+	@Autowired
 	private BankbookService bankbookService;
-	
-	public BankbookController() {
-		bankbookService = new BankbookService();
-	}
 	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)   // 파싱작업
 	public ModelAndView list(ModelAndView mv) {
