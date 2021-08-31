@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.iu.s1.util.DBConnector;
 
 public class BankBookDAO {
 	

@@ -10,4 +10,21 @@
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 	</bean>
+	
+	<bean id="sqlSessionFactory"
+	      name="sqlSessionFactory"
+	      class="org.mybatis.spring.SqlSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource" />
+	    <property name="configLocation"
+	              value="classpath:/mybatis-config.xml" />
+	    <property name="mapperLocations"
+	              value="classpath:/mappers/*.xml" />
+	</bean>
+	
+	<bean id="sqlSession" name="sqlSession"
+	      class="org.mybatis.spring.SqlSessionTemplate"
+	      destroy-method="clearCache">
+	    <constructor-arg name="sqlSessionFactory"
+	                     ref="sqlSessionFactory" />
+	</bean>
 </beans>
