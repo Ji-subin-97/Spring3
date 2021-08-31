@@ -11,5 +11,7 @@
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>BankbookSelect Page 입니다.</h1>
+	<h1>Test : ${test}</h1>
+	<h1>DTO : ${dto.bookName}</h1>
 </body>
 </html>
