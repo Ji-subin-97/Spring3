@@ -1,7 +1,10 @@
 package com.iu.s1.bankbook;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,30 +17,23 @@ import org.springframework.web.servlet.ModelAndView;
 public class BankbookController {
 	//pojo (Plain Old Java Object)
 	
-	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)   // 파싱작업
-	public ModelAndView list(Integer [] num) {
-		for(Integer i : num) {
-			System.out.println(i);
-		}
-		System.out.println("bankbook리스트 입니다.");
-		
-		ModelAndView mv = new ModelAndView();
+	@Autowired
+	private BankBookService bankbookService;
+	
+	@RequestMapping(value = "bankbookList")   // 파싱작업
+	public ModelAndView list(ModelAndView mv) {
+		List<BankBookDTO> ar = bankbookService.getList();
+		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
 		
 		return mv;
 	}
 	
-	@RequestMapping("bankbookSelect.do")
-	public void select(@RequestParam(defaultValue = "1", value= "n") Integer num, String name , Model model) {
-
-		System.out.println("num : " + num);
-		System.out.println("name : " + name);
-		BankBookDTO bankBookDTO = new BankBookDTO();
-		bankBookDTO.setBookName("BookName");
+	@RequestMapping("bankbookSelect")
+	public void select(BankBookDTO bankBookDTO, Model model) {
 		
-		model.addAttribute("dto", bankBookDTO);
-		model.addAttribute("test", "iu");
-		// return "bankbook/bankbookSelect";
+		bankBookDTO = bankbookService.getSelect(bankBookDTO);
+		model.addAttribute("dtov",bankBookDTO);	
 	}
 	
 	@RequestMapping("bankbookInsert.do")
