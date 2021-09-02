@@ -36,10 +36,24 @@ public class BankbookController {
 		model.addAttribute("dtov",bankBookDTO);	
 	}
 	
-	@RequestMapping("bankbookInsert.do")
+	@RequestMapping("bankbookInsert")
+	public void insert() {}
+
+	@RequestMapping(value = "bankbookInsert", method = {RequestMethod.POST})
 	public String insert(BankBookDTO bankBookDTO) {
 		System.out.println(bankBookDTO.getBookName());
-		System.out.println("insert");
-		return "redirect:../";
+		int result = bankbookService.setInsert(bankBookDTO);
+		
+		return "redirect:./bankbookList";
+		
 	}
+	
+	@RequestMapping("bankbookDelete")
+	public String delete(Integer bookNumber) {
+		int result = bankbookService.setDelete(bookNumber);
+		
+		return "redirect:./bankbookList";
+	}
+	
+	
 }

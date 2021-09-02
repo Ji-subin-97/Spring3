@@ -28,4 +28,8 @@ public class BankBookDAO {
 		
 	}
 	
+	public int setDelete(Integer bookNumber){
+		return sqlSession.delete(NAMESPACE+"setDelete", bookNumber);
+	}
+	
 }

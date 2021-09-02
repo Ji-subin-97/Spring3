@@ -29,13 +29,19 @@ public class BankbookDAOTest extends MyJunitTest{
 		assertNotEquals(0, ar.size());
 	}
 	
-	@Test
+//	@Test
 	public void setInsertTest() {
 		BankBookDTO bankBookDTO = new BankBookDTO();
 		bankBookDTO.setBookName("Spring");
 		bankBookDTO.setBookRate(3.35);
 		bankBookDTO.setBookSale(1);
 		int result = bankbookDAO.setInsert(bankBookDTO);
+		assertEquals(1, result);
+	}
+	
+	@Test
+	public void setDeleteTest() {
+		int result = bankbookDAO.setDelete(999);
 		assertEquals(1, result);
 	}
 }

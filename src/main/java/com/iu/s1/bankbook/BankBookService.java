@@ -22,4 +22,8 @@ public class BankBookService {
 	public int setInsert(BankBookDTO bankBookDTO) {
 		return bankBookDAO.setInsert(bankBookDTO);
 	}
+	
+	public int setDelete(Integer bookNumber) {
+		return bankBookDAO.setDelete(bookNumber);
+	}
 }

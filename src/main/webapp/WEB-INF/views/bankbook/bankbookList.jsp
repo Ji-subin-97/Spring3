@@ -28,6 +28,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="./bankbookInsert" class="btn btn-outline-primary">BankBook Insert</a>
 		</div>
 	</div>
 </body>
