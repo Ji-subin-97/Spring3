@@ -8,8 +8,15 @@
   		INSERT INTO BANKBOOK (bookNumber, bookName, bookRate, bookSale) VALUES (bankbook_seq.nextval, #{bookName}, #{bookRate}, #{bookSale})
   	</insert>
   	
-  	<select id="getList" resultType="com.iu.s1.bankbook.BankBookDTO">
-  		SELECT * FROM BANKBOOK ORDER BY BOOKNUMBER ASC
+  	<select id="getList" resultType="com.iu.s1.bankbook.BankBookDTO" parameterType="com.iu.s1.util.Pager">
+  		SELECT * FROM
+		    (SELECT ROWNUM R, BK.* FROM
+		        (SELECT *
+		            FROM BANKBOOK
+		            ORDER BY BOOKNUMBER desc
+		        ) 
+		        BK)
+		WHERE R between #{startRow} and #{lastRow}
   	</select>
   	
   	<select id="getSelect" parameterType="com.iu.s1.bankbook.BankBookDTO" resultType="com.iu.s1.bankbook.BankBookDTO">
@@ -19,4 +26,8 @@
   	<delete id="setDelete" parameterType="java.lang.Integer">
   		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
   	</delete>
+  	
+  	<update id="setUpdate" parameterType="com.iu.s1.bankbook.BankBookDTO">
+  		UPDATE BANKBOOK SET BOOKNAME=#{bookName}, BOOKRATE=#{bookRate}, BOOKSALE=#{bookSale} WHERE BOOKNUMBER=#{bookNumber}
+  	</update>
   </mapper>

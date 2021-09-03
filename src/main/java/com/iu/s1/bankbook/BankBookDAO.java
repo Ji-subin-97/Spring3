@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.s1.util.Pager;
+
 
 @Repository
 public class BankBookDAO {
@@ -18,8 +20,8 @@ public class BankBookDAO {
 		return sqlSession.insert(NAMESPACE+"setInsert", bankBookDTO);
 	}
 	
-	public List<BankBookDTO> getList(){
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BankBookDTO> getList(Pager pager){
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
 	public BankBookDTO getSelect(BankBookDTO bankBookDTO) {
@@ -30,6 +32,10 @@ public class BankBookDAO {
 	
 	public int setDelete(Integer bookNumber){
 		return sqlSession.delete(NAMESPACE+"setDelete", bookNumber);
+	}
+	
+	public int setUpdate(BankBookDTO bankBookDTO) {
+		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
 	}
 	
 }

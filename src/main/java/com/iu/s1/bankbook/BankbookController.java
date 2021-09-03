@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.util.Pager;
+
 @Controller  // 해당 클래스의 객체를 만들어 주세요.
 @RequestMapping("/bankbook/*")
 public class BankbookController {
@@ -21,8 +23,9 @@ public class BankbookController {
 	private BankBookService bankbookService;
 	
 	@RequestMapping(value = "bankbookList")   // 파싱작업
-	public ModelAndView list(ModelAndView mv) {
-		List<BankBookDTO> ar = bankbookService.getList();
+	public ModelAndView list(ModelAndView mv, Pager pager) {
+	
+		List<BankBookDTO> ar = bankbookService.getList(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
 		
@@ -51,6 +54,20 @@ public class BankbookController {
 	@RequestMapping("bankbookDelete")
 	public String delete(Integer bookNumber) {
 		int result = bankbookService.setDelete(bookNumber);
+		
+		return "redirect:./bankbookList";
+	}
+	
+	@RequestMapping("bankbookUpdate")
+	public void update(BankBookDTO bankBookDTO, Model model) {
+		bankBookDTO = bankbookService.getSelect(bankBookDTO);
+		model.addAttribute("dtov", bankBookDTO);
+	}
+	
+	@RequestMapping(value = "bankbookUpdate", method = {RequestMethod.POST})
+	public String update(BankBookDTO bankBookDTO) {
+		System.out.println(bankBookDTO.getBookName());
+		int result = bankbookService.setUpdate(bankBookDTO);
 		
 		return "redirect:./bankbookList";
 	}

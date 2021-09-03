@@ -15,7 +15,7 @@
 			<table class="table table-dark table-striped">
 				<thead>
 					<tr>
-						<th>번호</th><th>이름</th><th>이자율</th>
+						<th>번호</th><th>이름</th><th>이자율</th><th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -24,6 +24,7 @@
 							<td>${list.bookNumber}</td>
 							<td><a href="${pageContext.request.contextPath}/bankbook/bankbookSelect?bookNumber=${list.bookNumber}">${list.bookName}</a></td>
 							<td>${list.bookRate}</td>
+							<td><a href="${pageContext.request.contextPath}/bankbook/bankbookUpdate?bookNumber=${list.bookNumber}">업데이트</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
