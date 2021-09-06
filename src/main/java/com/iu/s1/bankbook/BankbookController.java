@@ -24,7 +24,7 @@ public class BankbookController {
 	
 	@RequestMapping(value = "bankbookList")   // 파싱작업
 	public ModelAndView list(ModelAndView mv, Pager pager) {
-	
+		
 		List<BankBookDTO> ar = bankbookService.getList(pager);
 		
 		mv.addObject("pager", pager);

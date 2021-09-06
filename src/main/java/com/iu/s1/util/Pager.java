@@ -2,6 +2,11 @@ package com.iu.s1.util;
 
 public class Pager {
 	
+	private String kind = "";
+	private String search = ""; // 검색
+	
+	//////////////////////////////////////////////
+	
 	private Long startRow; // 시작번호
 	private Long lastRow;  // 끝번호
 	
@@ -12,7 +17,7 @@ public class Pager {
 	private Long lastNum;
 	
 	private Long totalPage;
-
+	
 	public void makeNum(Long totalCount) {
 		//1. totalCount 구하기
 		
@@ -111,4 +116,20 @@ public class Pager {
 		return totalPage;
 	}
 
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 }
