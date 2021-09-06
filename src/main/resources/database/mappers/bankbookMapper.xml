@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.s1.bankbook.BankBookDAO">
+  	<select id="getCount" resultType="java.lang.Long">
+  		SELECT COUNT(bookNumber) FROM BANKBOOK
+  	</select>
   	<insert id="setInsert">
   		INSERT INTO BANKBOOK (bookNumber, bookName, bookRate, bookSale) VALUES (bankbook_seq.nextval, #{bookName}, #{bookRate}, #{bookSale})
   	</insert>

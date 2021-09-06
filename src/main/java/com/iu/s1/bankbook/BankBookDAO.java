@@ -38,4 +38,8 @@ public class BankBookDAO {
 		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
 	}
 	
+	public Long getCount() {
+		return sqlSession.selectOne(NAMESPACE + "getCount");
+	}
+	
 }
