@@ -18,8 +18,8 @@ public class BankBookService {
 	}
 	
 	public List<BankBookDTO> getList(Pager pager) {
-		pager.makeRow();
 		pager.makeNum();
+		pager.makeRow();
 		return bankBookDAO.getList(pager);
 	}
 	
